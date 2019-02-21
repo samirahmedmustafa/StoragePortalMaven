@@ -1,0 +1,42 @@
+#pluginAppObj_12_01 .container {
+	position: relative;
+	font-size: 0;
+	margin: 0 auto;
+	-ms-touch-action: none;
+	-webkit-touch-callout: none;
+	-webkit-user-select: none;
+	
+}
+
+#pluginAppObj_12_01 .container img { 
+	width: 100%;
+	height: auto;
+}
+#pluginAppObj_12_01 .container .img2 {
+	position: absolute;
+	top: 0; left: 0; height: 100%;
+	width: 50%;
+	background-size: cover;
+}
+#pluginAppObj_12_01 .container .border {
+	position: absolute;
+	top: 0; left: 50%; height: 100%;
+	width: 1px;
+	background-color: #ccc;
+	box-shadow: 0 0 1px #888;
+}
+#pluginAppObj_12_01 .handle {
+	position: absolute;
+	cursor: move;
+	
+	left: 0;
+	height: 20px;
+	width: 20px;
+	background-color: #ccc;
+	border: 1px solid #bbb;
+	box-shadow: 0 0 1px #888;
+}
+#pluginAppObj_12_01 .touch-events .handle {
+	height: 30px;
+	width: 30px;
+}

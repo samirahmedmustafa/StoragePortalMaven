@@ -1,0 +1,12 @@
+controller\Controller.class
+entity\Data_.class
+facade\DataFacade.class
+facade\BackupStatusFacade.class
+entity\BackupStatus_.class
+entity\BackupStatus.class
+entity\Category.class
+entity\Category_.class
+facade\CategoryFacade.class
+entity\Data.class
+facade\AbstractFacade.class
+entity\NewClass.class
