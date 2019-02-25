@@ -11,59 +11,110 @@
         <link href="resources/css/style.css" rel="stylesheet" type="text/css"/>
     </h:head>
     <h:body>
-        <div id="MV3">
-            <h3 style="text-align: center">MV3 Storage</h3>
-
-            <div id="chart1">
-                <div id="capacities1"></div>
-                <input id="btn_capacities1" class="back_cap" type="button" value="Back"></input>
-            </div>
-            <div id="chart2">
-                <div id="capacities2"></div>
-                <input id="btn_capacities2" class="back_cap" type="button" value="Back"></input>
-            </div>
-            <div id="chart3">
-                <div id="capacities3"></div>
-                <input id="btn_capacities3" class="back_cap" type="button" value="Back"></input>
-            </div>
+        <div id="chart1">
+            <div id="capacities1"></div>
+            <input id="btn_capacities1" class="back_cap" type="button" value="Back"></input>
         </div>
-
-        <div id="MV2">
-            <h3 style="text-align: center;">MV2 Storage</h3>
-            <div id="chart1">
-                <div id="capacities4"></div>
-                <input id="btn_capacities4" class="back_cap" type="button" value="Back"></input>
-            </div>
-            <div id="chart2">
+        <div id="chart2">
+            <div id="capacities2"></div>
+            <input id="btn_capacities2" class="back_cap" type="button" value="Back"></input>
+        </div>
+        <div id="chart3">
+            <div id="capacities3"></div>
+            <input id="btn_capacities3" class="back_cap" type="button" value="Back"></input>
+        </div>
+        <div id="chart4">
+            <div id="capacities4"></div>
+            <input id="btn_capacities4" class="back_cap" type="button" value="Back"></input>
+        </div>
+        <div>
+            <h3 align="center" id="title5"></h3>
+            <div id="chart5">
                 <div id="capacities5"></div>
                 <input id="btn_capacities5" class="back_cap" type="button" value="Back"></input>
-            </div>
-            <div id="chart3">
-                <div id="capacities6"></div>
-                <input id="btn_capacities6" class="back_cap" type="button" value="Back"></input>
+                <br />
+                <table border="1" align="center" style="background-color: white">
+                    <th style="color: black; background-color: whitesmoke">Succeeded</th>
+                    <th style="color: orangered; background-color: whitesmoke">Failed</th>
+                    <tr>
+                        <td id="succeeded_id5"></td>
+                        <td id="failed_id5"></td>
+                    </tr>
+                </table>
             </div>
         </div>
-
+        <div>
+            <h3 align="center" id="title6"></h3>
+            <div id="chart6">
+                <div id="capacities6"></div>
+                <input id="btn_capacities6" class="back_cap" type="button" value="Back"></input>
+                <br />
+                <table border="1" align="center" style="background-color: white">
+                    <th style="color: black; background-color: whitesmoke">Succeeded</th>
+                    <th style="color: orangered; background-color: whitesmoke">Failed</th>
+                    <tr>
+                        <td id="succeeded_id6"></td>
+                        <td id="failed_id6"></td>
+                    </tr>
+                </table>
+            </div>
+        </div>
         <script>
+            var succeeded = [];
+            var failed = [];
+            var aggregated_mv3lavun01prp = [];
+            function pieChart(chart_id) {
+            // this is the sixth chart
+            var chart = c3.generate({
+                bindto: chart_id,
+                        data: {
+                        // iris data from R
+                            columns: [
+                                    succeeded,
+                                    failed,
+                            ],
+                            type: 'pie',
+                        }
+                });
+            }
+
+            function getSum(total, num) {
+                return total + num;
+            }
             var old_data;
             var testvar1 = [];
             data1 = Math.floor(Math.random() * 60) + 1;
             data2 = 60 - data1;
             var dataString = "#{controller.findAll()}".trim();
-            backup_data = #{controller.findAllBkp()};
-            var succeeded = [];
-            var failed = [];
-            succeeded.push("Succeeded");
-            failed.push("Failed");
-            for (i = 0; i &lt; backup_data.length; i++) {
-            succeeded.push(backup_data[i]["succeeded"]);
+            
+            function processBackup(data, chart_id, title, succeeded_id, failed_id) {
+                aggregated_mv3lavun01prp = #{controller.fetchAggrMv3lavun01prp()};
+                failed = [];
+                succeeded = [];
+                server = data[0].server;
+                succeeded.push("Succeeded");
+                failed.push("Failed");
+                for (i = 0; i &lt; data.length; i++) {
+                    succeeded.push(data[i]["succeeded"]);
+                }
+                for (i = 0; i &lt; data.length; i++) {
+                    failed.push(data[i]["failed"]);
+                }
+                failed_shift = failed.slice();
+                succeeded_shift = succeeded.slice();
+                failed_shift.shift();
+                succeeded_shift.shift();
+                document.getElementById(failed_id).innerHTML = failed_shift.reduce(getSum, 0);
+                document.getElementById(succeeded_id).innerHTML = succeeded_shift.reduce(getSum, 0);
+                document.getElementById(title).innerHTML = server;
+                pieChart(chart_id);
             }
-            for (i = 0; i &lt; backup_data.length; i++) {
-            failed.push(backup_data[i]["failed"]);
-            }
-            console.log(backup_data);
+            mv3lavun01prp = #{controller.fetchMv3lavun01prp()};
+            mv2lavun01prp = #{controller.fetchMv2lavun01prp()};
+            processBackup(mv3lavun01prp, "#capacities5", "title5", "succeeded_id5", "failed_id5");
+            processBackup(mv2lavun01prp, "#capacities6", "title6", "succeeded_id6", "failed_id6");
             var dataList = dataString.split(",");
-            console.log(dataString);
+//            console.log(dataString);
             function drawBarChart() {
             // this is the first chart
             var chart1 = c3.generate({
@@ -269,101 +320,58 @@
                     });
             // this is the fifth chart
 
-            var chart5 = c3.generate({
-            bindto: "#capacities5",
-                    color: {
-                    pattern: ['#1f77b4', '#aec7e8']
-                    },
-                    data: {
-                    x: 'x',
-                            columns: [
-                            ['x', 'VMAX-3', 'Isilon', 'Unity', 'SMRC Unity', 'XtremIO'],
-                            ['Total (GBs)', 90, 200, 160, 400, 10],
-                            ['Used (GBs)', 30, 100, 140, 200, 6]
-                            ],
-                            type: 'bar',
-                            order: "null",
-                            labels: true,
-                            onclick: function (d, element) {
-                            old_data = d;
-                            if (old_data.id === "Used (GBs)") {
-                            chart5.load({
-                            unload: ['VMAX-3', 'Isilon', 'Unity', 'SMRC Unity', 'XtremIO', 'Total (GBs)', 'Used (GBs)'],
-                                    columns: [
-                                    ['x', 'VPLEX', 'Infra', 'AIX', 'OVM'],
-                                    ['Utilization', 50, 50, 50, 50]
-                                    ]
-                            });
-                            }
-                            }
-                    },
-                    axis: {
-                    x: {
-                    type: 'category' // this needed to load string x value
-                    },
-                            y: {
-                            label: 'Capacity'
-                            }
-
-                    }
-            });
-            d3.select('#btn_capacities5')
-                    .on('click', function (d, element) {
-                    chart5.load({
-                    unload: true,
-                            columns: [
-                            ['x', 'VMAX-3', 'Isilon', 'Unity', 'SMRC Unity', 'XtremIO'],
-                            ['Total (GBs)', 90, 200, 160, 400, 10],
-                            ['Used (GBs)', 30, 100, 140, 200, 6]
-                            ]
-                    });
-                    });
-            // this is the sixth chart
-
-            var chart = c3.generate({
-            bindto: "#capacities6",
-                    data: {
-                    // iris data from R
-                    columns: [
-                    ['data1', data1],
-                    ['data2', data2],
-                    ],
-                            type: 'pie',
-                            pie: {
-                                title: "mv3lavun01prv"
-                            }
-
-//                        onclick: function (d, i) {
-//                            console.log("onclick", d, i);
-//                        },
-//                        onmouseover: function (d, i) {
-//                            console.log("onmouseover", d, i);
-//                        },
-//                        onmouseout: function (d, i) {
-//                            console.log("onmouseout", d, i);
-//                        }
-                    }
-            });
-            setTimeout(function () {
-            chart.load({
-            columns: [
-                    succeeded,
-                    failed,
-            ]
-            });
-            }, 1500);
-            setTimeout(function () {
-            chart.unload({
-            ids: 'data1'
-            });
-            chart.unload({
-            ids: 'data2'
-            });
-            }, 2500);
+//            var chart5 = c3.generate({
+//            bindto: "#capacities5",
+//                    color: {
+//                    pattern: ['#1f77b4', '#aec7e8']
+//                    },
+//                    data: {
+//                    x: 'x',
+//                            columns: [
+//                            ['x', 'VMAX-3', 'Isilon', 'Unity', 'SMRC Unity', 'XtremIO'],
+//                            ['Total (GBs)', 90, 200, 160, 400, 10],
+//                            ['Used (GBs)', 30, 100, 140, 200, 6]
+//                            ],
+//                            type: 'bar',
+//                            order: "null",
+//                            labels: true,
+//                            onclick: function (d, element) {
+//                            old_data = d;
+//                            if (old_data.id === "Used (GBs)") {
+//                            chart5.load({
+//                            unload: ['VMAX-3', 'Isilon', 'Unity', 'SMRC Unity', 'XtremIO', 'Total (GBs)', 'Used (GBs)'],
+//                                    columns: [
+//                                    ['x', 'VPLEX', 'Infra', 'AIX', 'OVM'],
+//                                    ['Utilization', 50, 50, 50, 50]
+//                                    ]
+//                            });
+//                            }
+//                            }
+//                    },
+//                    axis: {
+//                    x: {
+//                    type: 'category' // this needed to load string x value
+//                    },
+//                            y: {
+//                            label: 'Capacity'
+//                            }
+//
+//                    }
+//            });
+//            d3.select('#btn_capacities5')
+//                    .on('click', function (d, element) {
+//                    chart5.load({
+//                    unload: true,
+//                            columns: [
+//                            ['x', 'VMAX-3', 'Isilon', 'Unity', 'SMRC Unity', 'XtremIO'],
+//                            ['Total (GBs)', 90, 200, 160, 400, 10],
+//                            ['Used (GBs)', 30, 100, 140, 200, 6]
+//                            ]
+//                    });
+//                    });
             }
 
             drawBarChart();
-
         </script>
 
 

@@ -47,10 +47,17 @@ public abstract class AbstractFacade<T> {
         return getEntityManager().createQuery(cq).getResultList();
     }
 
-    public List<T> findByDate(String server) {
+    public List<T> findByDateStorage(String server) {
         return getEntityManager()
                 .createNativeQuery("SELECT * FROM BackupStatus WHERE date LIKE '" + new SimpleDateFormat("yyyy-MM-dd")
                                                                                     .format(new Date()) + "%' AND server = '" + server + "'", BackupStatus.class)
+                .getResultList();
+    }
+    
+    public List<T> findAggreByGroup(String server) {
+        return getEntityManager().createNativeQuery("SELECT [Groups], SUM(failed) as failed "
+                + "FROM [STRGOPS].[dbo].[BackupStatus] "
+                + "WHERE [Date] LIKE '" + new SimpleDateFormat("yyyy-MM-dd").format(new Date())  + "%' AND [server] = '" + server + "' GROUP BY [Groups]")
                 .getResultList();
     }
     

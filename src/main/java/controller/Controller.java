@@ -27,6 +27,8 @@ public class Controller implements Serializable {
     @EJB
     private DataFacade dataFacade;
     private String mv3lavun01prp;
+    private String mv2lavun01prp;
+    private String aggregated_mv3lavun01prp;
 
     public BackupStatus getBackupStatus() {
         return backupStatus;
@@ -44,13 +46,22 @@ public class Controller implements Serializable {
     }
 
     public String toDashboard() {
-        mv3lavun01prp = new Gson().toJson(backupStatusFacade.findByDate("mv3lavun01prp.smrc.sidra.org"));
-        return "dashboard";
+        mv3lavun01prp = new Gson().toJson(backupStatusFacade.findByDateStorage("mv3lavun01prp.smrc.sidra.org"));
+        mv2lavun01prp = new Gson().toJson(backupStatusFacade.findByDateStorage("mv2lavun01prp.smrc.sidra.org"));
+        aggregated_mv3lavun01prp = new Gson().toJson(backupStatusFacade.findAggreByGroup("mv3lavun01prp.smrc.sidra.org"));
+        System.out.println("aggregated: " + aggregated_mv3lavun01prp);
+        return "/dashboard";
     }
 
-    public String findAllBkp() {
-        
+    public String fetchMv3lavun01prp() {
         return mv3lavun01prp;
     }
+    
+    public String fetchAggrMv3lavun01prp() {
+        return aggregated_mv3lavun01prp;
+    }
 
+    public String fetchMv2lavun01prp() {
+        return mv2lavun01prp;
+    }
 }
