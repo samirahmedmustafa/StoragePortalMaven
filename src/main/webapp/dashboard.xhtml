@@ -70,8 +70,8 @@
                         data: {
                         // iris data from R
                             columns: [
-                                    succeeded,
-                                    failed,
+                                succeeded,
+                                failed,
                             ],
                             type: 'pie',
                         }
@@ -81,6 +81,7 @@
             function getSum(total, num) {
                 return total + num;
             }
+            
             var old_data;
             var testvar1 = [];
             data1 = Math.floor(Math.random() * 60) + 1;
@@ -149,9 +150,9 @@
                     x: {
                     type: 'category' // this needed to load string x value
                     },
-                            y: {
+                        y: {
                             label: 'Capacity'
-                            }
+                        }
                     }
             });
             d3.select('#btn_capacities1')

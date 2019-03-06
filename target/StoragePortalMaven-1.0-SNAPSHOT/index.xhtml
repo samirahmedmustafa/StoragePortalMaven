@@ -46,7 +46,9 @@
                                                 <li class="imMnMnFirst imPage" data-link-paths="dashboard">
                                                     <div class="label-wrapper">
                                                         <div class="label-inner-wrapper">
-                                                            <h:link class="label" value="Dashboard" outcome="#{controller.toDashboard()}"/>
+                                                            <h:form>
+                                                                <h:commandLink class="label" value="Dashboard" action="#{controller.toDashboard()}"/>
+                                                            </h:form>
                                                         </div>
                                                     </div>
                                                 </li><li class="imMnMnMiddle imLevel"><div class="label-wrapper"><div class="label-inner-wrapper"><span class="label">Capacity Planning</span></div></div><ul data-original-position="bottom" class="bottom">

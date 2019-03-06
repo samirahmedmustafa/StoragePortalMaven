@@ -50,17 +50,28 @@ public abstract class AbstractFacade<T> {
     public List<T> findByDateStorage(String server) {
         return getEntityManager()
                 .createNativeQuery("SELECT * FROM BackupStatus WHERE date LIKE '" + new SimpleDateFormat("yyyy-MM-dd")
-                                                                                    .format(new Date()) + "%' AND server = '" + server + "'", BackupStatus.class)
+                        .format(new Date()) + "%' AND server = '" + server + "'", BackupStatus.class)
                 .getResultList();
     }
-    
-    public List<T> findAggreByGroup(String server) {
-        return getEntityManager().createNativeQuery("SELECT [Groups], SUM(failed) as failed "
-                + "FROM [STRGOPS].[dbo].[BackupStatus] "
-                + "WHERE [Date] LIKE '" + new SimpleDateFormat("yyyy-MM-dd").format(new Date())  + "%' AND [server] = '" + server + "' GROUP BY [Groups]")
+
+    public List<String> findLast7(String server) {
+        return getEntityManager()
+                .createNativeQuery("select a.datefield as DATEVALUE,sum(a.Succeeded) as SUCCESS,sum(a.Failed) as FAILED from ("
+                        + "select convert(varchar,date,1) as datefield,succeeded,failed from [dbo].[BackupStatus] "
+                        + "WHERE server = '" + server + "' ) a "
+                        + "where cast(a.datefield as datetime) > getdate()-7"
+                        + "group by a.datefield").getResultList();
+    }
+
+    public List<String> findAggreByGroup(String server) {
+        return getEntityManager().createNativeQuery("SELECT groups, SUM(failed) as failed "
+                + "FROM BackupStatus "
+                + "WHERE date LIKE '" + new SimpleDateFormat("yyyy-MM-dd").format(new Date()) + "%' AND server = '" + server
+                + "' AND failed != 0"
+                + " GROUP BY groups")
                 .getResultList();
     }
-    
+
     public List<T> findRange(int[] range) {
         javax.persistence.criteria.CriteriaQuery cq = getEntityManager().getCriteriaBuilder().createQuery();
         cq.select(cq.from(entityClass));
@@ -77,5 +88,5 @@ public abstract class AbstractFacade<T> {
         javax.persistence.Query q = getEntityManager().createQuery(cq);
         return ((Long) q.getSingleResult()).intValue();
     }
-    
+
 }
