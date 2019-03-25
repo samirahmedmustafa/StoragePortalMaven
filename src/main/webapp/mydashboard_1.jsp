@@ -20,22 +20,22 @@
             <div id="capacities2"></div>
             <!--<input id="btn_capacities2" class="back_cap" type="button" value="Back"></input>-->
         </div>
-        <!--        <div id="chart3">
-                    <h3 align="center" id="title3"></h3>
-                    <div id="capacities3"></div>
-        
-                    <input id="btn_capacities3" class="back_cap" type="button" value="Back"></input>
-                </div>        
-                <div id="chart4">
-                    <h3 align="center" id="title4"></h3>
-                    <div id="capacities4"></div>
-                    <input id="btn_capacities4" class="back_cap" type="button" value="Back"></input>
-                </div>
-                <div id="chart5" style="width: 850px; height: 500px" >
-                    <h3 align="center" id="title5"></h3>
-                    <div id="capacities5"></div>
-                    <input id="btn_capacities5" class="back_cap" type="button" value="Back"></input>
-                </div>-->
+        <div id="chart3">
+            <h3 align="center" id="title3"></h3>
+            <div id="capacities3"></div>
+
+            <!--<input id="btn_capacities3" class="back_cap" type="button" value="Back"></input>-->
+        </div>        
+        <div id="chart4">
+            <h3 align="center" id="title4"></h3>
+            <div id="capacities4"></div>
+            <!--<input id="btn_capacities4" class="back_cap" type="button" value="Back"></input>-->
+        </div>
+        <div id="chart5" style="width: 850px; height: 500px" >
+            <h3 align="center" id="title5"></h3>
+            <div id="capacities5"></div>
+            <!--<input id="btn_capacities5" class="back_cap" type="button" value="Back"></input>-->
+        </div>
         <script>
             var succeeded = [];
             var failed = [];
@@ -57,10 +57,6 @@
                         ],
                         type: 'pie',
                     },
-                    color: {
-                        pattern: ["red", "green"]
-                    },
-
                     tooltip: {
                         format: {
                             value: function (value, ratio) {
@@ -161,14 +157,14 @@
             mv3lavun01prp = ${controller.fetchMv3lavun01prp()};
             mv2lavun01prp = ${controller.fetchMv2lavun01prp()};
             top10 = ${controller.fetchTopTen()};
-            processPieChart(mv3lavun01prp, "#capacities1", "title1", 500, 500);
-            processPieChart(mv2lavun01prp, "#capacities2", "title2", 500, 500);
-//            processBarChart("#capacities3", "title3", "mv3lavun01prp es3", aggregated_mv3lavun01prp, "Failures per Group", "No. of Failures",
-//                    300, 300);
-//            processBarChart("#capacities4", "title4", "mv2lavun01prp number of failures", aggregated_mv2lavun01prp, "Failures per Group", "No. of Failures",
-//                    300, 300);
-//            processBarChart("#capacities5", "title5", "mv3lavun01prp es5", top10, "Size (GBs) of top 10", "Size(GBs)",
-//                    600, 500);
+            processPieChart(mv3lavun01prp, "#capacities1", "title1", 300, 300);
+            processPieChart(mv2lavun01prp, "#capacities2", "title2", 300, 300);
+            processBarChart("#capacities3", "title3", "mv3lavun01prp es3", aggregated_mv3lavun01prp, "Failures per Group", "No. of Failures",
+                    300, 300);
+            processBarChart("#capacities4", "title4", "mv2lavun01prp number of failures", aggregated_mv2lavun01prp, "Failures per Group", "No. of Failures",
+                    300, 300);
+            processBarChart("#capacities5", "title5", "mv3lavun01prp es5", top10, "Size (GBs) of top 10", "Size(GBs)",
+                    600, 500);
             //            var dataList = dataString.split(",");
             ////            console.log(dataString);
             ////            function drawBarChart() {

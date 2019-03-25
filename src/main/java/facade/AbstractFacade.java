@@ -10,6 +10,7 @@ import java.text.SimpleDateFormat;
 import java.util.Date;
 import java.util.List;
 import javax.persistence.EntityManager;
+import javax.persistence.Query;
 
 /**
  *
@@ -61,6 +62,13 @@ public abstract class AbstractFacade<T> {
                         + "WHERE server = '" + server + "' ) a "
                         + "where cast(a.datefield as datetime) > getdate()-7"
                         + "group by a.datefield").getResultList();
+    }
+    
+    public List<Object[]> findTopTen() {
+        Query q = getEntityManager()
+                .createNativeQuery("SELECT [Name], round([Size_GB],1) FROM [STRGOPS].[dbo].[Backup_top]"
+                        + " WHERE [DATE] = '" + new SimpleDateFormat("yyyy-MM-dd").format(new Date()) + "'");
+                return q.getResultList();
     }
 
     public List<String> findAggreByGroup(String server) {

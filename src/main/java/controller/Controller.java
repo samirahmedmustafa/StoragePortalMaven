@@ -3,9 +3,11 @@ package controller;
 import com.google.gson.Gson;
 import entity.AggrBackupReport;
 import entity.BackupStatus;
+import entity.Backuptop;
 import entity.Data;
 import facade.AggrBackupReportFacade;
 import facade.BackupStatusFacade;
+import facade.BackuptopFacade;
 import facade.DataFacade;
 import java.io.IOException;
 import javax.inject.Named;
@@ -22,7 +24,10 @@ public class Controller implements Serializable {
 
     @EJB
     private BackupStatusFacade backupStatusFacade;
-    
+
+    @EJB
+    private BackuptopFacade backuptopFacade;
+
     @EJB
     private AggrBackupReportFacade aggrBackupReportFacade;
 
@@ -36,6 +41,7 @@ public class Controller implements Serializable {
     private String aggregated_mv3lavun01prp;
     private String aggregated_mv2lavun01prp;
     private String lastSevenDays;
+    private String topTen;
 
     public BackupStatus getBackupStatus() {
         return backupStatus;
@@ -58,9 +64,13 @@ public class Controller implements Serializable {
         aggregated_mv3lavun01prp = new Gson().toJson(backupStatusFacade.findAggreByGroup("mv3lavun01prp.smrc.sidra.org"));
         aggregated_mv2lavun01prp = new Gson().toJson(backupStatusFacade.findAggreByGroup("mv2lavun01prp.smrc.sidra.org"));
         lastSevenDays = new Gson().toJson(backupStatusFacade.findLast7("mv3lavun01prp.smrc.sidra.org"));
-        System.out.println("lastSevenDays: " + backupStatusFacade.findLast7("mv3lavun01prp.smrc.sidra.org"));
-        System.out.println("mv3lavun01prp: " + backupStatusFacade.findByDateStorage("mv3lavun01prp.smrc.sidra.org"));
-        System.out.println("mv2lavun01prp: " + backupStatusFacade.findByDateStorage("mv2lavun01prp.smrc.sidra.org"));
+        topTen = new Gson().toJson(backuptopFacade.findTopTen());
+        for (Object[] o : backuptopFacade.findTopTen()) {
+            System.out.println("findTopTen: " + o[1]);
+        }
+//        System.out.println("lastSevenDays: " + backupStatusFacade.findLast7("mv3lavun01prp.smrc.sidra.org"));
+//        System.out.println("mv3lavun01prp: " + backupStatusFacade.findByDateStorage("mv3lavun01prp.smrc.sidra.org"));
+//        System.out.println("mv2lavun01prp: " + backupStatusFacade.findByDateStorage("mv2lavun01prp.smrc.sidra.org"));
         FacesContext.getCurrentInstance().getExternalContext().redirect("mydashboard.jsp");
     }
 
@@ -68,6 +78,10 @@ public class Controller implements Serializable {
         return lastSevenDays;
     }
 
+    public String fetchTopTen() {
+        return topTen;
+    }
+    
     public String fetchMv3lavun01prp() {
         return mv3lavun01prp;
     }
@@ -75,7 +89,7 @@ public class Controller implements Serializable {
     public String fetchAggrMv3lavun01prp() {
         return aggregated_mv3lavun01prp;
     }
-    
+
     public String fetchAggrMv2lavun01prp() {
         return aggregated_mv2lavun01prp;
     }
