@@ -1,9 +1,7 @@
 package controller;
 
 import com.google.gson.Gson;
-import entity.AggrBackupReport;
 import entity.BackupStatus;
-import entity.Backuptop;
 import entity.Data;
 import facade.AggrBackupReportFacade;
 import facade.BackupStatusFacade;
@@ -51,12 +49,12 @@ public class Controller implements Serializable {
         return backupStatusFacade;
     }
 
-    public String findAll() {
-        List<Data> dataList = dataFacade.findAll();
-//        System.out.println("Data: " + dataList.get(0).getTotal());
-//        System.out.println(dataList.get(0).toString());
-        return dataList.get(0).toString();
-    }
+//    public String findAll() {
+//        List<Data> dataList = dataFacade.findAll();
+////        System.out.println("Data: " + dataList.get(0).getTotal());
+////        System.out.println(dataList.get(0).toString());
+//        return dataList.get(0).toString();
+//    }
 
     public void toDashboard() throws IOException {
         mv3lavun01prp = new Gson().toJson(backupStatusFacade.findByDateStorage("mv3lavun01prp.smrc.sidra.org"));
@@ -65,9 +63,9 @@ public class Controller implements Serializable {
         aggregated_mv2lavun01prp = new Gson().toJson(backupStatusFacade.findAggreByGroup("mv2lavun01prp.smrc.sidra.org"));
         lastSevenDays = new Gson().toJson(backupStatusFacade.findLast7("mv3lavun01prp.smrc.sidra.org"));
         topTen = new Gson().toJson(backuptopFacade.findTopTen());
-        for (Object[] o : backuptopFacade.findTopTen()) {
-            System.out.println("findTopTen: " + o[1]);
-        }
+//        for (Object[] o : backuptopFacade.findTopTen()) {
+//            System.out.println("findTopTen: " + o[1]);
+//        }
 //        System.out.println("lastSevenDays: " + backupStatusFacade.findLast7("mv3lavun01prp.smrc.sidra.org"));
 //        System.out.println("mv3lavun01prp: " + backupStatusFacade.findByDateStorage("mv3lavun01prp.smrc.sidra.org"));
 //        System.out.println("mv2lavun01prp: " + backupStatusFacade.findByDateStorage("mv2lavun01prp.smrc.sidra.org"));
