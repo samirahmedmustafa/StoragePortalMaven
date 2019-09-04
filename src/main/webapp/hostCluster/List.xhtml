@@ -1,0 +1,63 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:f="http://xmlns.jcp.org/jsf/core"
+      xmlns:c="http://xmlns.jcp.org/jsp/jstl/core">
+
+    <ui:composition template="/template.xhtml">
+        <ui:define name="body">
+
+            <f:view>
+
+
+                <h:form>
+                    <h1><h:outputText value="List"/></h1>
+                    <h:outputText escape="false" value="Records" rendered="#{hostClusterController.items.rowCount == 0}"/>
+                    <h:panelGroup rendered="#{hostClusterController.items.rowCount > 0}">
+                        <h:outputText value="#{hostClusterController.pagination.pageFirstItem + 1}..#{hostClusterController.pagination.pageLastItem + 1}/#{hostClusterController.pagination.itemsCount}"/>&nbsp;
+                        <h:commandLink action="#{hostClusterController.previous}" value="Previous #{hostClusterController.pagination.pageSize}" rendered="#{hostClusterController.pagination.hasPreviousPage}"/>&nbsp;
+                        <h:commandLink action="#{hostClusterController.next}" value="Next #{hostClusterController.pagination.pageSize}" rendered="#{hostClusterController.pagination.hasNextPage}"/>&nbsp;
+                        <h:dataTable value="#{hostClusterController.items}" var="item" border="1" >
+                            <h:column>
+                                <f:facet name="header">
+                                    <h:outputText value="Id"/>
+                                </f:facet>
+                                <h:outputText value="#{item.id}"/>
+                            </h:column>
+                            <h:column>
+                                <f:facet name="header">
+                                    <h:outputText value="Cluster"/>
+                                </f:facet>
+                                <h:outputText value="#{item.cluster}"/>
+                            </h:column>
+                            <h:column>
+                                <f:facet name="header">
+                                    <h:outputText value="Host"/>
+                                </f:facet>
+                                <h:outputText value="#{item.storageView}"/>
+                            </h:column>
+                            <h:column>
+                                <f:facet name="header">
+                                    <h:outputText value="Action"/>
+                                </f:facet>
+                                <h:commandLink action="#{hostClusterController.prepareView}" value="View"/>
+                                <h:outputText value=" "/>
+                                <h:commandLink action="#{hostClusterController.prepareEdit}" value="Edit"/>
+                                <h:outputText value=" "/>
+                                <h:commandLink action="#{hostClusterController.destroy}" value="Destroy"/>
+                            </h:column>
+                        </h:dataTable>
+                        <br />
+                        <h:commandLink action="#{hostClusterController.prepareCreate}" value="Create"/>
+                    </h:panelGroup>
+                </h:form>
+            </f:view>
+
+
+
+        </ui:define>
+    </ui:composition>
+
+</html>

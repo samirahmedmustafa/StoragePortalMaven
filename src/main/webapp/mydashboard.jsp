@@ -29,7 +29,7 @@
             <!-- ============================================================== -->
             <div class="dashboard-header">
                 <nav class="navbar navbar-expand-lg bg-white fixed-top">
-                    <a class="navbar-brand" href="index.html">Concept</a>
+                    <h5 class="navbar-brand" href="index.html">Sidra</h5>
                     <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
                         <span class="navbar-toggler-icon"></span>
                     </button>
@@ -444,13 +444,11 @@
                         <div class="row">
                             <div class="col-xl-12 col-lg-12 col-md-12 col-sm-12 col-12">
                                 <div class="page-header">
-                                    <h2 class="pageheader-title">E-commerce Dashboard Template </h2>
+                                    <h2 class="pageheader-title">Storage Dashboard </h2>
                                     <p class="pageheader-text">Nulla euismod urna eros, sit amet scelerisque torton lectus vel mauris facilisis faucibus at enim quis massa lobortis rutrum.</p>
                                     <div class="page-breadcrumb">
                                         <nav aria-label="breadcrumb">
                                             <ol class="breadcrumb">
-                                                <li class="breadcrumb-item"><a href="#" class="breadcrumb-link">Dashboard</a></li>
-                                                <li class="breadcrumb-item active" aria-current="page">E-Commerce Dashboard Template</li>
                                             </ol>
                                         </nav>
                                     </div>
@@ -466,9 +464,9 @@
                                 <div class="col-xl-3 col-lg-6 col-md-6 col-sm-12 col-12">
                                     <div class="card">
                                         <div class="card-body">
-                                            <h5 class="text-muted">Total Revenue</h5>
+                                            <h5 id="mv3vmax-totalname" class="text-muted"></h5>
                                             <div class="metric-value d-inline-block">
-                                                <h1 class="mb-1">$12099</h1>
+                                                <h1 id="mv3-total" class="mb-1"></h1>
                                             </div>
                                             <div class="metric-label d-inline-block float-right text-success font-weight-bold">
                                                 <span><i class="fa fa-fw fa-arrow-up"></i></span><span>5.86%</span>
@@ -480,9 +478,9 @@
                                 <div class="col-xl-3 col-lg-6 col-md-6 col-sm-12 col-12">
                                     <div class="card">
                                         <div class="card-body">
-                                            <h5 class="text-muted">Affiliate Revenue</h5>
+                                            <h5 id="mv3vmax-totalusedname" class="text-muted"></h5>
                                             <div class="metric-value d-inline-block">
-                                                <h1 class="mb-1">$12099</h1>
+                                                <h1 id="mv3-totalUsed" class="mb-1"></h1>
                                             </div>
                                             <div class="metric-label d-inline-block float-right text-success font-weight-bold">
                                                 <span><i class="fa fa-fw fa-arrow-up"></i></span><span>5.86%</span>
@@ -494,9 +492,9 @@
                                 <div class="col-xl-3 col-lg-6 col-md-6 col-sm-12 col-12">
                                     <div class="card">
                                         <div class="card-body">
-                                            <h5 class="text-muted">Refunds</h5>
+                                            <h5 id="mv2vmax-totalname" class="text-muted"></h5>
                                             <div class="metric-value d-inline-block">
-                                                <h1 class="mb-1">0.00</h1>
+                                                <h1 id="mv2-total" class="mb-1"></h1>
                                             </div>
                                             <div class="metric-label d-inline-block float-right text-primary font-weight-bold">
                                                 <span>N/A</span>
@@ -508,9 +506,9 @@
                                 <div class="col-xl-3 col-lg-6 col-md-6 col-sm-12 col-12">
                                     <div class="card">
                                         <div class="card-body">
-                                            <h5 class="text-muted">Avg. Revenue Per User</h5>
+                                            <h5 id="mv2vmax-totalusedname" class="text-muted></h5>
                                             <div class="metric-value d-inline-block">
-                                                <h1 class="mb-1">$28000</h1>
+                                                <h1 id="mv2-totalUsed" class="mb-1"></h1>
                                             </div>
                                             <div class="metric-label d-inline-block float-right text-secondary font-weight-bold">
                                                 <span>-2.00%</span>
@@ -592,6 +590,19 @@
                                                                 <div class="m-r-10"><img src="assets/images/product-pic-4.jpg" alt="user" class="rounded" width="45"></div>
                                                             </td>
                                                             <td>Product #4 </td>
+                                                            <td>id000004 </td>
+                                                            <td>34</td>
+                                                            <td>$340.00</td>
+                                                            <td>23-08-2018 09:12:35</td>
+                                                            <td>Michael K. Ledford </td>
+                                                            <td><span class="badge-dot badge-success mr-1"></span>Delivered </td>
+                                                        </tr>
+                                                        <tr>
+                                                            <td>4</td>
+                                                            <td>
+                                                                <div class="m-r-10"><img src="assets/images/product-pic-4.jpg" alt="user" class="rounded" width="45"></div>
+                                                            </td>
+                                                            <td>Product #5 </td>
                                                             <td>id000004 </td>
                                                             <td>34</td>
                                                             <td>$340.00</td>
@@ -970,6 +981,18 @@
         <script src="assets/vendor/charts/c3charts/C3chartjs.js"></script>
         <script src="assets/libs/js/dashboard-ecommerce.js"></script>
         <script>
+
+            function showTotalUsed() {
+                document.getElementById("mv3vmax-totalusedname").textContent = "(Used) " + ${controller.totalUsed_MV3}[0][0]; 
+                document.getElementById("mv3-totalUsed").textContent = (${controller.totalUsed_MV3}[0][1]/1024).toFixed(2) + " TB";
+                document.getElementById("mv3vmax-totalname").textContent = "(Total) " + ${controller.total_MV3}[0][1]; 
+                document.getElementById("mv3-total").textContent = (${controller.total_MV3}[0][2]/1024).toFixed(2) + " TB";
+                document.getElementById("mv2vmax-totalusedname").textContent = "(Used) " + ${controller.totalUsed_MV2}[0][0]; 
+                document.getElementById("mv2-totalUsed").textContent = (${controller.totalUsed_MV2}[0][1]/1024).toFixed(2) + " TB";
+                document.getElementById("mv2vmax-totalname").textContent = "(Total) " + ${controller.total_MV2}[0][1]; 
+                document.getElementById("mv2-total").textContent = (${controller.total_MV2}[0][2]/1024).toFixed(2) + " TB";
+            }
+
             function drawPie() {
                 var chart = c3.generate({
                     bindto: "#pieChart",
@@ -1042,8 +1065,9 @@
                     bindto: "#barChart",
                     data: {
                         columns: [
-                            ['data1', 30, 200, 100, 400, 150, 250],
-                            ['data2', 50, 20, 10, 40, 15, 25]
+                            ['data1', 30, 200, 100, 400, 150, 250].sort(function (a, b) {
+                                return a - b;
+                            }),
                         ],
                         types: {
                             data1: 'bar',
@@ -1055,9 +1079,9 @@
                 });
 
             }
-            
-            
-            
+
+
+            showTotalUsed();
             drawPie();
             drawTrend();
             drawBar();

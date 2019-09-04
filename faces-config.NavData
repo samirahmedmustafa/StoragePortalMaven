@@ -1,6 +1,37 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <Scene Scope="Project" version="2">
     <Scope Scope="Faces Configuration Only"/>
-    <Scope Scope="Project"/>
+    <Scope Scope="Project">
+        <Node id="mydashboard.jsp" x="160" y="150" zoom="true"/>
+        <Node id="assets/vendor/charts/morris-bundle/morrisjs.html" x="150" y="450" zoom="true"/>
+        <Node id="mv3.xhtml" x="1650" y="300" zoom="true"/>
+        <Node id="backup-planning.xhtml" x="1150" y="450" zoom="true"/>
+        <Node id="assets/vendor/fonts/fontawesome/webfonts/fa-regular-400.html" x="150" y="1050" zoom="true"/>
+        <Node id="mydashboard_1.jsp" x="650" y="150" zoom="true"/>
+        <Node id="assets/vendor/fonts/simple-line-icons/fonts/Simple-Line-Icons4c82.html" x="900" y="150" zoom="true"/>
+        <Node id="mv2-1.xhtml" x="150" y="900" zoom="true"/>
+        <Node id="mv3-1.xhtml" x="650" y="300" zoom="true"/>
+        <Node id="hostCluster/Create.xhtml" x="650" y="600" zoom="true"/>
+        <Node id="storage.xhtml" x="650" y="450" zoom="true"/>
+        <Node id="dashboard.xhtml" x="150" y="600" zoom="true"/>
+        <Node id="assets/vendor/fonts/fontawesome/webfonts/fa-brands-400.html" x="1400" y="300" zoom="true"/>
+        <Node id="template.xhtml" x="1900" y="150" zoom="true"/>
+        <Node id="assets/vendor/fonts/fontawesome/webfonts/fa-solid-900.html" x="400" y="450" zoom="true"/>
+        <Node id="index.xhtml" x="900" y="450" zoom="true"/>
+        <Node id="assets/vendor/custom-js/jquery.multi-select.html" x="1150" y="300" zoom="true"/>
+        <Node id="resources/templates/template.xhtml" x="400" y="900" zoom="true"/>
+        <Node id="smrc-1.xhtml" x="400" y="300" zoom="true"/>
+        <Node id="backup.xhtml" x="150" y="300" zoom="true"/>
+        <Node id="mv3-mv2.xhtml" x="400" y="750" zoom="true"/>
+        <Node id="mydashboard_2.jsp" x="650" y="750" zoom="true"/>
+        <Node id="hostCluster/Edit.xhtml" x="900" y="600" zoom="true"/>
+        <Node id="vendors-information.xhtml" x="900" y="300" zoom="true"/>
+        <Node id="storage-planning.xhtml" x="381" y="139" zoom="false"/>
+        <Node id="hostCluster/View.xhtml" x="150" y="750" zoom="true"/>
+        <Node id="technology-library.xhtml" x="1650" y="150" zoom="true"/>
+        <Node id="smrc.xhtml" x="400" y="600" zoom="true"/>
+        <Node id="assets/vendor/fonts/material-design-iconic-font/fonts/materialdesignicons-webfontdc99.html" x="1400" y="150" zoom="true"/>
+        <Node id="hostCluster/List.xhtml" x="1150" y="150" zoom="true"/>
+    </Scope>
     <Scope Scope="All Faces Configurations"/>
 </Scene>

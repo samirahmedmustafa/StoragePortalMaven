@@ -1,0 +1,44 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:f="http://xmlns.jcp.org/jsf/core">
+
+    <ui:composition template="/template.xhtml">
+        <ui:define name="body">
+            <h:panelGroup id="messagePanel" layout="block">
+                <h:messages errorStyle="color: red" infoStyle="color: green" layout="table"/>
+            </h:panelGroup>
+
+            <f:view>
+
+
+                <h:form>
+                    <h1><h:outputText value="Create/Edit"/></h1>
+                    <h:panelGrid columns="2">
+                        <h:outputLabel value="Id:" for="id" />
+                        <h:inputText readonly="true" id="id" value="#{hostClusterController.selected.id}" title="Id" required="true" requiredMessage="The Id field is required."/>
+                        <h:outputLabel value="Cluster:" for="cluster" />
+                        <h:inputText readonly="true"  id="cluster" value="#{hostClusterController.selected.cluster}" title="Cluster" />
+                        <h:outputLabel value="Storage View:" for="host" />
+                        <h:inputText readonly="true"  id="host" value="#{hostClusterController.selected.storageView}" title="Host" />
+                    </h:panelGrid>
+                    <br />
+                    <h:commandLink action="#{hostClusterController.destroyAndView}" value="Destroy"/>
+                    <br />
+                    <br />
+                    <h:link outcome="Edit" value="Edit"/>
+                    <br />
+                    <h:commandLink action="#{hostClusterController.prepareCreate}" value="Create" />
+                    <br />
+                    <h:commandLink action="#{hostClusterController.prepareList}" value="List"/>
+                    <br />
+                </h:form>
+            </f:view>
+
+
+        </ui:define>
+    </ui:composition>
+
+</html>

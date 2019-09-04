@@ -43,6 +43,7 @@ public abstract class AbstractFacade<T> {
     }
 
     public List<T> findAll() {
+        getEntityManager().getEntityManagerFactory().getCache().evictAll();
         javax.persistence.criteria.CriteriaQuery cq = getEntityManager().getCriteriaBuilder().createQuery();
         cq.select(cq.from(entityClass));
         return getEntityManager().createQuery(cq).getResultList();
@@ -63,12 +64,33 @@ public abstract class AbstractFacade<T> {
                         + "where cast(a.datefield as datetime) > getdate()-7"
                         + "group by a.datefield").getResultList();
     }
-    
+
     public List<Object[]> findTopTen() {
         Query q = getEntityManager()
                 .createNativeQuery("SELECT [Name], round([Size_GB],1) FROM [STRGOPS].[dbo].[Backup_top]"
                         + " WHERE [DATE] = '" + new SimpleDateFormat("yyyy-MM-dd").format(new Date()) + "'");
-                return q.getResultList();
+        return q.getResultList();
+    }
+
+    public List<Object[]> findTotalUsed(String vmax) {
+        Query q = getEntityManager()
+                .createNativeQuery("SELECT [SITE] "
+                        + ",sum([ALLOCATED]) "
+                        + "FROM [STRGOPS].[dbo].[Storage_report] "
+                        + "where date = '" + new SimpleDateFormat("yyyy-MM-dd").format(new Date()) + "' and site = '" + vmax + "' "
+                        + "group by site");
+        return q.getResultList();
+    }
+
+    public List<Object[]> findTotal(String vmax) {
+        Query q = getEntityManager()
+                .createNativeQuery("SELECT TOP (1) [ID] "
+                        + " ,[SITE]"
+                        + " ,[TOTAL]"
+                        + " ,[DATE]"
+                        + "  FROM [STRGOPS].[dbo].[Storage_report]"
+                        + "  where date = '" + new SimpleDateFormat("yyyy-MM-dd").format(new Date()) + "' and site = '" + vmax + "'");
+        return q.getResultList();
     }
 
     public List<String> findAggreByGroup(String server) {
