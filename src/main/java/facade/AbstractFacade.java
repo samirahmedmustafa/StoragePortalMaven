@@ -72,6 +72,27 @@ public abstract class AbstractFacade<T> {
         return q.getResultList();
     }
 
+    public List<T> findTopTenVMAX(String vmax) {
+        //        Query q = getEntityManager()
+        //                .createNativeQuery("SELECT TOP (10)[ID]\n"
+        //                        + "      ,[SITE]\n"
+        //                        + "      ,[STORAGE_GROUP]\n"
+        //                        + "      ,[TOTAL]\n"
+        //                        + "      ,[ALLOCATED]\n"
+        //                        + "      ,[DATE]\n"
+        //                        + "  FROM [STRGOPS].[dbo].[Storage_report]\n"
+        //                        + "  where date = '2019-09-05' and site = 'MV3-VMAX'\n"
+        //                        + "  order by allocated desc");
+        //        return q.getResultList();
+        return getEntityManager().createNamedQuery("StorageReport.findTop10").setParameter("site", "MV3-VMAX").setParameter("date", new Date()).getResultList();
+//        return getEntityManager().createNamedQuery("StorageReport.findTop10").getResultList();
+//        getEntityManager().getEntityManagerFactory().getCache().evictAll();
+//        javax.persistence.criteria.CriteriaQuery cq = getEntityManager().getCriteriaBuilder().createQuery();
+//        cq.select(cq.from(entityClass));
+//        return getEntityManager().createQuery(cq).getResultList();
+
+    }
+    
     public List<Object[]> findTotalUsed(String vmax) {
         Query q = getEntityManager()
                 .createNativeQuery("SELECT [SITE] "

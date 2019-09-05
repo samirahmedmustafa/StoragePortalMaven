@@ -2,14 +2,17 @@ package controller;
 
 import com.google.gson.Gson;
 import entity.BackupStatus;
+import entity.StorageReport;
 import facade.AggrBackupReportFacade;
 import facade.BackupStatusFacade;
 import facade.BackuptopFacade;
 import facade.DataFacade;
+import facade.StorageReportFacade;
 import java.io.IOException;
 import javax.inject.Named;
 import javax.enterprise.context.SessionScoped;
 import java.io.Serializable;
+import java.util.List;
 import javax.ejb.EJB;
 import javax.faces.context.FacesContext;
 import javax.inject.Inject;
@@ -26,6 +29,8 @@ public class Controller implements Serializable {
 
     @EJB
     private AggrBackupReportFacade aggrBackupReportFacade;
+    @EJB
+    private StorageReportFacade storageReportFacade;
 
     @Inject
     BackupStatus backupStatus;
@@ -42,6 +47,7 @@ public class Controller implements Serializable {
     private String totalUsed_MV2;
     private String total_MV3;
     private String total_MV2;
+    private List<StorageReport> top10VMAX;
 
     public BackupStatus getBackupStatus() {
         return backupStatus;
@@ -67,6 +73,13 @@ public class Controller implements Serializable {
         return backupStatusFacade;
     }
 
+    public List<StorageReport> getTop10VMAX() {
+        for(StorageReport s: top10VMAX) {
+            System.out.println(s.getSite() + " " + s.getAllocated());
+        }
+        return top10VMAX;
+    }
+
 //    public String findAll() {
 //        List<Data> dataList = dataFacade.findAll();
 ////        System.out.println("Data: " + dataList.get(0).getTotal());
@@ -84,6 +97,9 @@ public class Controller implements Serializable {
         total_MV3 = new Gson().toJson(backupStatusFacade.findTotal("MV3-VMAX"));
         total_MV2 = new Gson().toJson(backupStatusFacade.findTotal("MV2-VMAX"));
         topTen = new Gson().toJson(backuptopFacade.findTopTen());
+//        top10VMAX = new Gson().toJson(backupStatusFacade.findTopTenVMAX("MV3-VMAX"));
+        top10VMAX = storageReportFacade.findTopTenVMAX("MV3-VMAX");
+        System.out.println(top10VMAX);
 //        for (Object[] o : backuptopFacade.findTopTen()) {
 //            System.out.println("findTopTen: " + o[1]);
 //        }
