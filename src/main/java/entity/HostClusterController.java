@@ -4,7 +4,6 @@ import entity.domain.util.JsfUtil;
 import entity.domain.util.PaginationHelper;
 import facade.HostClusterFacade;
 import java.io.Serializable;
-import java.util.ResourceBundle;
 import javax.ejb.EJB;
 import javax.inject.Named;
 import javax.enterprise.context.SessionScoped;

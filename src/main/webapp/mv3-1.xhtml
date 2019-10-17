@@ -21,7 +21,7 @@
             window.onload = function () {
                 checkBrowserCompatibility('Your browser does not support the features necessary to display this website.', 'Your browser may not support the features necessary to display this website.', '[1]Update your browser[/1] or [2]continue without updating[/2].', 'http://outdatedbrowser.com/');
             };
-            x5engine.utils.currentPagePath = 'mv3-1.jsf';
+            x5engine.utils.currentPagePath = 'mv3-1.xhtml';
             x5engine.boot.push(function () {
                 x5engine.imPageToTop.initializeButton({});
             });
@@ -41,101 +41,102 @@
                                                 </div>
                                             </div>
                                             <ul class="menu-mobile-animated hidden">
-                                                <li class="imMnMnFirst imPage" data-link-paths="/dashboard.jsf">
+                                                <li class="imMnMnFirst imPage" data-link-paths="dashboard">
                                                     <div class="label-wrapper">
                                                         <div class="label-inner-wrapper">
-                                                            <a class="label" href="dashboard.jsf">
-                                                                Dashboard		</a>
+                                                            <h:form>
+                                                                <h:commandLink class="label" value="Dashboard" action="#{controller.toDashboard()}"/>
+                                                            </h:form>
                                                         </div>
                                                     </div>
                                                 </li><li class="imMnMnMiddle imLevel"><div class="label-wrapper"><div class="label-inner-wrapper"><span class="label">Capacity Planning</span></div></div><ul data-original-position="bottom" class="bottom">
-                                                        <li class="imMnMnFirst imPage" data-link-paths="/storage-planning.jsf">
+                                                        <li class="imMnMnFirst imPage" data-link-paths="/storage-planning.xhtml">
                                                             <div class="label-wrapper">
                                                                 <div class="label-inner-wrapper">
-                                                                    <a class="label" href="storage-planning.jsf">
+                                                                    <a class="label" href="storage-planning.xhtml">
                                                                         Storage Planning		</a>
                                                                 </div>
                                                             </div>
-                                                        </li><li class="imMnMnLast imPage" data-link-paths="/backup-planning.jsf">
+                                                        </li><li class="imMnMnLast imPage" data-link-paths="/backup-planning.xhtml">
                                                             <div class="label-wrapper">
                                                                 <div class="label-inner-wrapper">
-                                                                    <a class="label" href="backup-planning.jsf">
+                                                                    <a class="label" href="backup-planning.xhtml">
                                                                         Backup Planning		</a>
                                                                 </div>
                                                             </div>
                                                         </li></ul></li><li class="imMnMnMiddle imLevel"><div class="label-wrapper"><div class="label-inner-wrapper"><span class="label">Architecture Documents</span></div></div><ul data-original-position="bottom" class="bottom">
                                                         <li class="imMnMnFirst imLevel"><div class="label-wrapper"><div class="label-inner-wrapper"><span class="label">Storage Design Architecture</span></div></div><ul data-original-position="open-right" class="open-right">
-                                                                <li class="imMnMnFirst imPage" data-link-paths="/mv3.jsf">
+                                                                <li class="imMnMnFirst imPage" data-link-paths="/mv3.xhtml">
                                                                     <div class="label-wrapper">
                                                                         <div class="label-inner-wrapper">
-                                                                            <a class="label" href="mv3.jsf">
+                                                                            <a class="label" href="mv3.xhtml">
                                                                                 MV3-MV2		</a>
                                                                         </div>
                                                                     </div>
                                                                 </li>
-                                                                <li class="imMnMnLast imPage" data-link-paths="/smrc.jsf">
+                                                                <li class="imMnMnLast imPage" data-link-paths="/smrc.xhtml">
                                                                     <div class="label-wrapper">
                                                                         <div class="label-inner-wrapper">
-                                                                            <a class="label" href="smrc.jsf">
+                                                                            <a class="label" href="smrc.xhtml">
                                                                                 SMRC		</a>
                                                                         </div>
                                                                     </div>
                                                                 </li></ul></li><li class="imMnMnLast imLevel"><div class="label-wrapper"><div class="label-inner-wrapper"><span class="label">Backup Design Architecture</span></div></div><ul data-original-position="open-right" class="open-right">
-                                                                <li class=" imPage" data-link-paths="/mv3-mv2.jsf">
+                                                                <li class=" imPage" data-link-paths="/mv3-mv2.xhtml">
                                                                     <div class="label-wrapper">
                                                                         <div class="label-inner-wrapper">
-                                                                            <a class="label" href="mv3-mv2.jsf">
+                                                                            <a class="label" href="mv3-mv2.xhtml">
                                                                                 MV3-MV2		</a>
                                                                         </div>
                                                                     </div>
                                                                 </li></ul></li></ul></li><li class="imMnMnMiddle imLevel"><div class="label-wrapper"><div class="label-inner-wrapper"><span class="label">Datacenter Floor Plan</span></div></div><ul data-original-position="bottom" class="bottom">
-                                                        <li class="imMnMnFirst imPage" data-link-paths="/mv3-1.jsf">
+                                                        <li class="imMnMnFirst imPage" data-link-paths="/mv3-1.xhtml">
                                                             <div class="label-wrapper">
                                                                 <div class="label-inner-wrapper">
-                                                                    <a class="label" href="mv3-1.jsf">
+                                                                    <a class="label" href="mv3-1.xhtml">
                                                                         MV3		</a>
                                                                 </div>
                                                             </div>
-                                                        </li><li class="imMnMnMiddle imPage" data-link-paths="/mv2-1.jsf">
+                                                        </li><li class="imMnMnMiddle imPage" data-link-paths="/mv2-1.xhtml">
                                                             <div class="label-wrapper">
                                                                 <div class="label-inner-wrapper">
-                                                                    <a class="label" href="mv2-1.jsf">
+                                                                    <a class="label" href="mv2-1.xhtml">
                                                                         MV2		</a>
                                                                 </div>
                                                             </div>
-                                                        </li><li class="imMnMnLast imPage" data-link-paths="/smrc-1.jsf">
+                                                        </li><li class="imMnMnLast imPage" data-link-paths="/smrc-1.xhtml">
                                                             <div class="label-wrapper">
                                                                 <div class="label-inner-wrapper">
-                                                                    <a class="label" href="smrc-1.jsf">
+                                                                    <a class="label" href="smrc-1.xhtml">
                                                                         SMRC		</a>
                                                                 </div>
                                                             </div>
                                                         </li></ul></li><li class="imMnMnMiddle imLevel"><div class="label-wrapper"><div class="label-inner-wrapper"><span class="label">Operations</span></div></div><ul data-original-position="bottom" class="bottom">
-                                                        <li class="imMnMnFirst imPage" data-link-paths="/storage.jsf">
+                                                        <li class="imMnMnFirst imPage" data-link-paths="/storage.xhtml">
                                                             <div class="label-wrapper">
                                                                 <div class="label-inner-wrapper">
-                                                                    <a class="label" href="storage.jsf">
+                                                                    <a class="label" href="storage.xhtml">
                                                                         Storage		</a>
                                                                 </div>
                                                             </div>
-                                                        </li><li class="imMnMnLast imPage" data-link-paths="/backup.jsf">
+                                                        </li><li class="imMnMnLast imPage" data-link-paths="/backup.xhtml">
                                                             <div class="label-wrapper">
                                                                 <div class="label-inner-wrapper">
-                                                                    <a class="label" href="backup.jsf">
+                                                                    <a class="label" href="backup.xhtml">
                                                                         Backup		</a>
                                                                 </div>
                                                             </div>
-                                                        </li></ul></li><li class="imMnMnMiddle imPage" data-link-paths="/technology-library.jsf">
+                                                        </li></ul></li><li class="imMnMnMiddle imPage" data-link-paths="/technology-library.xhtml">
                                                     <div class="label-wrapper">
                                                         <div class="label-inner-wrapper">
-                                                            <a class="label" href="technology-library.jsf">
+                                                            <a class="label" href="technology-library.xhtml">
                                                                 Technology Library		</a>
                                                         </div>
                                                     </div>
-                                                </li><li class="imMnMnLast imPage" data-link-paths="/vendors-information.jsf">
+                                                </li><li class="imMnMnLast imPage" data-link-paths="/vendors-information.xhtml">
                                                     <div class="label-wrapper">
                                                         <div class="label-inner-wrapper">
-                                                            <a class="label" href="vendors-information.jsf">
+                                                            <a class="label" href="vendors-information.xhtml">
                                                                 Vendors Information		</a>
                                                         </div>
                                                     </div>
@@ -194,107 +195,107 @@
                                                     </div>
                                                 </div>
                                                 <ul class="menu-mobile-animated hidden">
-                                                    <li class="imMnMnFirst imPage" data-link-paths="/dashboard.jsf">
+                                                    <li class="imMnMnFirst imPage" data-link-paths="/dashboard.xhtml">
                                                         <div class="label-wrapper">
                                                             <div class="label-inner-wrapper">
-                                                                <a class="label" href="dashboard.jsf">
+                                                                <a class="label" href="dashboard.xhtml">
                                                                     Dashboard		</a>
                                                             </div>
                                                         </div>
                                                     </li><li class="imMnMnMiddle imLevel"><div class="label-wrapper"><div class="label-inner-wrapper"><span class="label">Capacity Planning</span></div></div><ul data-original-position="bottom" class="bottom">
-                                                            <li class="imMnMnFirst imPage" data-link-paths="/storage-planning.jsf">
+                                                            <li class="imMnMnFirst imPage" data-link-paths="/storage-planning.xhtml">
                                                                 <div class="label-wrapper">
                                                                     <div class="label-inner-wrapper">
-                                                                        <a class="label" href="storage-planning.jsf">
+                                                                        <a class="label" href="storage-planning.xhtml">
                                                                             Storage Planning		</a>
                                                                     </div>
                                                                 </div>
-                                                            </li><li class="imMnMnLast imPage" data-link-paths="/backup-planning.jsf">
+                                                            </li><li class="imMnMnLast imPage" data-link-paths="/backup-planning.xhtml">
                                                                 <div class="label-wrapper">
                                                                     <div class="label-inner-wrapper">
-                                                                        <a class="label" href="backup-planning.jsf">
+                                                                        <a class="label" href="backup-planning.xhtml">
                                                                             Backup Planning		</a>
                                                                     </div>
                                                                 </div>
                                                             </li></ul></li><li class="imMnMnMiddle imLevel"><div class="label-wrapper"><div class="label-inner-wrapper"><span class="label">Architecture Documents</span></div></div><ul data-original-position="bottom" class="bottom">
                                                             <li class="imMnMnFirst imLevel"><div class="label-wrapper"><div class="label-inner-wrapper"><span class="label">Storage Design Architecture</span></div></div><ul data-original-position="open-right" class="open-right">
-                                                                    <li class="imMnMnFirst imPage" data-link-paths="/mv3.jsf">
+                                                                    <li class="imMnMnFirst imPage" data-link-paths="/mv3.xhtml">
                                                                         <div class="label-wrapper">
                                                                             <div class="label-inner-wrapper">
-                                                                                <a class="label" href="mv3.jsf">
+                                                                                <a class="label" href="mv3.xhtml">
                                                                                     MV3		</a>
                                                                             </div>
                                                                         </div>
-                                                                    </li><li class="imMnMnMiddle imPage" data-link-paths="/mv2.jsf">
+                                                                    </li><li class="imMnMnMiddle imPage" data-link-paths="/mv2.xhtml">
                                                                         <div class="label-wrapper">
                                                                             <div class="label-inner-wrapper">
-                                                                                <a class="label" href="mv2.jsf">
+                                                                                <a class="label" href="mv2.xhtml">
                                                                                     MV2		</a>
                                                                             </div>
                                                                         </div>
-                                                                    </li><li class="imMnMnLast imPage" data-link-paths="/smrc.jsf">
+                                                                    </li><li class="imMnMnLast imPage" data-link-paths="/smrc.xhtml">
                                                                         <div class="label-wrapper">
                                                                             <div class="label-inner-wrapper">
-                                                                                <a class="label" href="smrc.jsf">
+                                                                                <a class="label" href="smrc.xhtml">
                                                                                     SMRC		</a>
                                                                             </div>
                                                                         </div>
                                                                     </li></ul></li><li class="imMnMnLast imLevel"><div class="label-wrapper"><div class="label-inner-wrapper"><span class="label">Backup Design Architecture</span></div></div><ul data-original-position="open-right" class="open-right">
-                                                                    <li class=" imPage" data-link-paths="/mv3-mv2.jsf">
+                                                                    <li class=" imPage" data-link-paths="/mv3-mv2.xhtml">
                                                                         <div class="label-wrapper">
                                                                             <div class="label-inner-wrapper">
-                                                                                <a class="label" href="mv3-mv2.jsf">
+                                                                                <a class="label" href="mv3-mv2.xhtml">
                                                                                     MV3-MV2		</a>
                                                                             </div>
                                                                         </div>
                                                                     </li></ul></li></ul></li><li class="imMnMnMiddle imLevel"><div class="label-wrapper"><div class="label-inner-wrapper"><span class="label">Datacenter Floor Plan</span></div></div><ul data-original-position="bottom" class="bottom">
-                                                            <li class="imMnMnFirst imPage" data-link-paths="/mv3-1.jsf">
+                                                            <li class="imMnMnFirst imPage" data-link-paths="/mv3-1.xhtml">
                                                                 <div class="label-wrapper">
                                                                     <div class="label-inner-wrapper">
-                                                                        <a class="label" href="mv3-1.jsf">
+                                                                        <a class="label" href="mv3-1.xhtml">
                                                                             MV3		</a>
                                                                     </div>
                                                                 </div>
-                                                            </li><li class="imMnMnMiddle imPage" data-link-paths="/mv2-1.jsf">
+                                                            </li><li class="imMnMnMiddle imPage" data-link-paths="/mv2-1.xhtml">
                                                                 <div class="label-wrapper">
                                                                     <div class="label-inner-wrapper">
-                                                                        <a class="label" href="mv2-1.jsf">
+                                                                        <a class="label" href="mv2-1.xhtml">
                                                                             MV2		</a>
                                                                     </div>
                                                                 </div>
-                                                            </li><li class="imMnMnLast imPage" data-link-paths="/smrc-1.jsf">
+                                                            </li><li class="imMnMnLast imPage" data-link-paths="/smrc-1.xhtml">
                                                                 <div class="label-wrapper">
                                                                     <div class="label-inner-wrapper">
-                                                                        <a class="label" href="smrc-1.jsf">
+                                                                        <a class="label" href="smrc-1.xhtml">
                                                                             SMRC		</a>
                                                                     </div>
                                                                 </div>
                                                             </li></ul></li><li class="imMnMnMiddle imLevel"><div class="label-wrapper"><div class="label-inner-wrapper"><span class="label">Operations</span></div></div><ul data-original-position="bottom" class="bottom">
-                                                            <li class="imMnMnFirst imPage" data-link-paths="/storage.jsf">
+                                                            <li class="imMnMnFirst imPage" data-link-paths="/storage.xhtml">
                                                                 <div class="label-wrapper">
                                                                     <div class="label-inner-wrapper">
-                                                                        <a class="label" href="storage.jsf">
+                                                                        <a class="label" href="storage.xhtml">
                                                                             Storage		</a>
                                                                     </div>
                                                                 </div>
-                                                            </li><li class="imMnMnLast imPage" data-link-paths="/backup.jsf">
+                                                            </li><li class="imMnMnLast imPage" data-link-paths="/backup.xhtml">
                                                                 <div class="label-wrapper">
                                                                     <div class="label-inner-wrapper">
-                                                                        <a class="label" href="backup.jsf">
+                                                                        <a class="label" href="backup.xhtml">
                                                                             Backup		</a>
                                                                     </div>
                                                                 </div>
-                                                            </li></ul></li><li class="imMnMnMiddle imPage" data-link-paths="/technology-library.jsf">
+                                                            </li></ul></li><li class="imMnMnMiddle imPage" data-link-paths="/technology-library.xhtml">
                                                         <div class="label-wrapper">
                                                             <div class="label-inner-wrapper">
-                                                                <a class="label" href="technology-library.jsf">
+                                                                <a class="label" href="technology-library.xhtml">
                                                                     Technology Library		</a>
                                                             </div>
                                                         </div>
-                                                    </li><li class="imMnMnLast imPage" data-link-paths="/vendors-information.jsf">
+                                                    </li><li class="imMnMnLast imPage" data-link-paths="/vendors-information.xhtml">
                                                         <div class="label-wrapper">
                                                             <div class="label-inner-wrapper">
-                                                                <a class="label" href="vendors-information.jsf">
+                                                                <a class="label" href="vendors-information.xhtml">
                                                                     Vendors Information		</a>
                                                             </div>
                                                         </div>
